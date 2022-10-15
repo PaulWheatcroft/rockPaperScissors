@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"crypto/rand"
+	"fmt"
+)
 
 type game struct {
 	gameId         string
@@ -8,6 +11,12 @@ type game struct {
 	playerTwoName  string
 	playerOneScore int
 	playerTwoScore int
+}
+
+func tokenGenerator() string {
+	b := make([]byte, 4)
+	rand.Read(b)
+	return fmt.Sprintf("%x", b)
 }
 
 func newGame(gameId string) *game {
@@ -21,7 +30,8 @@ func newGame(gameId string) *game {
 }
 
 func main() {
-	fmt.Printf("I'm running")
-	newGame := newGame("abc")
+	fmt.Printf("I'm running this")
+	a := tokenGenerator()
+	newGame := newGame(a)
 	fmt.Printf("%v", newGame)
 }
